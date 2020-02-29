@@ -48,120 +48,6 @@ header{
             align-items: center;
         position: relative;
     }
-    &-phones{
-        color: $color-white;
-       
-        font-size: 10px;
-        a{
-            margin-right:25px;
-            color: $color-white;
-            &:hover{
-                color: $color-white;
-                opacity: 0.5;
-            }
-        }
-      
-    }
-    &-btn{
-       
-    }
-    &-links{
-        border-right: 1px solid #393939;
-            display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex !important;
-    flex-direction: row;
-        &__item{
-            display: inline-block;
-            vertical-align: middle;
-            width: 93px;
-            text-align: center;
-            height: 70px;
-            display: -webkit-box;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex !important;
-            flex-direction: row;
-            justify-content:center;
-            align-items: center;
-            border-left: 1px solid #393939;
-            
-        }
-        &__cart{
-                width: 164px;
-                justify-content: flex-start;
-                padding-left: 26px;
-            .header-link__num{
-                left: 23px;
-            }
-        }
-    }
-    &-link{
-        display: inline-block;
-        position: relative;
-        min-width: 30px;
-        text-align: center;
-        &__num{
-            position: absolute;
-            top: 50%;
-            right: 0px;
-            width: 22px;
-            height: 22px;
-            margin-top: -11px;
-            background: #df4e49;
-            color: #fff;
-            font-weight: 500;
-            font-size: 11px;
-            line-height: 22px;
-            border-radius: 50%;
-            transition: all 0.3s;
-            z-index: 99;
-        }
-        .icon-img{
-            transition: all 0.3s;
-            position: relative;
-        }
-        .icon-watch{
-            margin-right: 10px;
-            & + .header-link__num{
-                
-            }
-        }
-        .icon-star{
-            margin-right: 15px;
-        }
-        &:hover{
-            .icon-img{
-                opacity: 0.5;
-            }
-            .header-link__num{
-                    background: #759f05;
-            }
-        }
-        &_text{
-            text-transform: uppercase;
-            color: #fff;
-            font-size: 10px;
-            text-align: left;
-            margin-left: 25px;
-            display: inline-block;
-            vertical-align: middle;
-             transition: all 0.3s;
-            span{
-                display:block;
-                font-size: 14px;
-                font-weight: 900;
-                padding-top: 5px;
-            }
-            &:hover{
-                opacity: 0.5;
-            }
-        }
-        
-    }
 }
 
 .header-search{    
@@ -193,8 +79,7 @@ header{
             width: 120px;
             display: none;
         }
-    }
-   
+    }   
     &__input{
         background:#fff;
         border: 1px solid #fff;
@@ -218,11 +103,6 @@ header{
         &:-moz-placeholder { 
           color: $color-black;
         }
-        /*&:focus{
-            width: 380px;
-            border: 1px solid #000;
-            padding: 0 0px 0 45px;
-        }*/
     }
     &.active{
         z-index: 999;

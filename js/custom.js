@@ -104,7 +104,7 @@ function initSlider() {
          
 	 });
      
-     console.log($(window).innerWidth());
+     //console.log($(window).innerWidth());
      $('.f-menu-parent').click(function() {	
          if($(window).innerWidth()<992){
              $(this).next('.f-submenu').slideToggle();
@@ -422,16 +422,162 @@ function initSlider() {
       });
 
      
+     if($('.item-product__info').length){
+         $(".item-product__info").dotdotdot({
+            height:60
+        });         
+     }
+     if($('.item-product-list__info').length){
+         $(".item-product-list__info").dotdotdot({
+            height:115
+        });         
+     }
+     
+     if($('.aside-sticky').length){     
+         console.log('1');
+         var sticky = new Sticky('.aside-sticky');
+     }
+     
+     $(window).scroll(function(event){
+         
+         if($('.aside-sticky').length){     
+            if($('.aside-sticky').css("position") === "fixed") {
+                $('.aside-sticky').addClass('is-sticky-fixed');
+            }  else{
+                $('.aside-sticky').removeClass('is-sticky-fixed');
+            }
+         }
+       
+    });
      
      
+     $('.slider-product-image').slick({
+          infinite:false,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          fade: true,
+          asNavFor: '.slider-product-image-nav',
+          responsive: [  
+                {
+                  breakpoint: 741,
+                  settings: {
+                      arrows:true
+                  }
+                }
+              ]
+    });
+    $('.slider-product-image-nav').slick({
+       infinite:false,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      asNavFor: '.slider-product-image',
+      dots: false,
+        arrows:true,
+      centerMode:true,
+      focusOnSelect: true,
+        vertical:true,
+        responsive: [
+                
+                
+                {
+                  breakpoint: 992,
+                  settings: {
+                    slidesToShow: 5,
+                  }
+                }
+              ]
+    });
      
+        
+     $('.js-slider-product-icons').each(function () {
+          $(this).slick({
+            infinite: true,
+            arrows:true,
+            dots:false,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            swipeToSlide:true,
+            centerMode:false,
+                     
+            responsive: [
+                
+                
+                {
+                  breakpoint: 992,
+                  settings: {
+                    slidesToShow: 4
+                  }
+                },
+                {
+                  breakpoint: 640,
+                  settings: {
+                    slidesToShow: 4 
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: {
+                    slidesToShow: 3, 
+                  }
+                }
+              ]
+        });
+    });
      
+     /*Products slider*/     
+     $('.js-slider-products').each(function () {
+          $(this).slick({
+            infinite: true,
+            arrows:true,
+            dots:false,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            appendArrows: $(this).parents('.slider-wrapper').find('.slider-arrows'),
+            swipeToSlide:true,
+            centerMode:false,
+                   
+            responsive: [
+                {
+                  breakpoint: 741,
+                  settings: {
+                    slidesToShow: 2,
+                  }
+                },
+                {
+                  breakpoint: 640,
+                  settings: {
+                    slidesToShow: 1,
+                      variableWidth:false,  
+                  }
+                }
+              ]
+        });
+    });
+
      
+     $(window).on('resize orientationchange', function() {
+            if($('.item-product-2__info').length){
+                 $(".item-product-2__info").dotdotdot({
+                    height:80
+                });         
+             }
+
+          
+        });
      
+     if($('.item-product-2__info').length){
+         $(".item-product-2__info").dotdotdot({
+            height:80
+        });         
+     }
+    /*End Products slider*/ 
      
-     
-     
-     
+     $('.product-option-item__name').on('click', function(event) {
+         if($(window).innerWidth()<741){
+             $(this).parents('.product-option-item').toggleClass('active');
+         }
+     })
      
      
      
@@ -447,17 +593,50 @@ function initSlider() {
                 email: {
 					required: true,
 					email: true
-				}
-				
+				}				
 			},
 			messages: {
-				name: "Необходимо заполнить поле «ФИО».",
-				phone: "Необходимо заполнить поле «Телефон».",
+				name: "Необходимо заполнить «ФИО».",
+				phone: "Необходимо заполнить «Телефон».",
 				email: {
-                    required: "Необходимо заполнить поле «E-mail».",
+                    required: "Необходимо заполнить «E-mail».",
 					email: "Введите корректный адрес электронной почты."
-                }
-				
+                }				
+			},
+            submitHandler: function(){
+                $.fancybox.close();
+                $.fancybox.open({
+                    src  : '#popup-thank',
+                    type : 'inline',
+                     touch: false,                    
+                });
+            }
+     });
+     
+     $("#formOrder").validate({
+         errorElement:'div',
+         errorPlacement: function(error, element) {
+            element.parent().append(error);
+        },
+			rules: {
+				number: "required",
+				name: "required",
+				phone: "required",
+                email: {
+					required: true,
+					email: true
+				},
+				comment: "required"
+			},
+			messages: {
+				number: "Необходимо заполнить «Серийный номер».",
+				name: "Необходимо заполнить «Название станка».",
+				phone: "Необходимо заполнить «Телефон».",
+				email: {
+                    required: "Необходимо заполнить «E-mail».",
+					email: "Введите корректный адрес электронной почты."
+                },
+                comment: "Необходимо заполнить «Наименование запчасти(ей)»."				
 			},
             submitHandler: function(){
                 $.fancybox.close();
@@ -469,7 +648,6 @@ function initSlider() {
                 });
             }
      });
-     
      
      
      
@@ -1091,9 +1269,7 @@ function initSlider() {
      
      
      
-     if($('.aside-sticky').length){         
-         var sticky = new Sticky('.aside-sticky');
-     }
+     
      
      $("#formPersonal").validate({
          errorElement:'div',
