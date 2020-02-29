@@ -1,14 +1,14 @@
-$selectric-main-color:      #d8dadc !default;                                              // Color used in border
+$selectric-main-color:      #fff !default;                                              // Color used in border
 $selectric-secondary-color: #BBB !default;                                              // Color used in button
-$selectric-text-color:      #4c5055 !default;                                              // Color used in label
+$selectric-text-color:      #000 !default;                                              // Color used in label
 $selectric-bg-color:        #fff !default;                                           // Background color
 $selectric-btn-bg-color:    #fff !default;                                           // Button background color
-$selectric-height:          42px !default;                                              // Outer height
-$selectric-spacing:         15px !default;                                              // Label left padding
+$selectric-height:          50px !default;                                              // Outer height
+$selectric-spacing:         14px !default;                                              // Label left padding
 $selectric-border-width:    1px !default;                                               // Outer border width
 $selectric-border-radius:   0px !default;                                               // Border radius
 $selectric-inner-height:    $selectric-height - ($selectric-border-width * 2) !default; // Inner height
-$selectric-font-size:       14px !default;                                              // Font size
+$selectric-font-size:       15px !default;                                              // Font size
 
 .selectric-wrapper {
   position: relative;
@@ -25,6 +25,7 @@ $selectric-font-size:       14px !default;                                      
   background: $selectric-bg-color;
   position: relative;
   overflow: hidden;
+ transition: $default-transition;
 
   .label {
     display: block;
@@ -37,6 +38,8 @@ $selectric-font-size:       14px !default;                                      
     color: $selectric-text-color;
     height: $selectric-inner-height;
     user-select: none;
+    font-weight: 100;
+    text-shadow: 0 0;
   }
 
   .button {
@@ -64,16 +67,21 @@ $selectric-font-size:       14px !default;                                      
       width: 12px;
       height: 5px;
       background: url('../img/icons.png') no-repeat -70px -30px; 
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 6px 6px 0 6px;
+        border-color: #000000 transparent transparent transparent;
     }
   }
 }
 
 .selectric-focus .selectric {
-  //border-color: darken($selectric-main-color, 20%);
+  border-color: #e5e5e5;
 }
 
 .selectric-hover .selectric {
-  //border-color: darken($selectric-main-color, 10%);
+  border-color: #e5e5e5;
 
   .button {
     //color: darken($selectric-secondary-color, 10%);
@@ -88,7 +96,7 @@ $selectric-font-size:       14px !default;                                      
   z-index: 9999;
 
   .selectric {
-    //border-color: darken($selectric-main-color, 10%);
+    border-color: #e5e5e5;
   }
 
   .selectric-items {
@@ -164,9 +172,9 @@ $selectric-font-size:       14px !default;                                      
   top: 100%;
   left: 0;
   background: $selectric-bg-color;
-  border: 1px solid darken($selectric-main-color, 10%);
+  border: 1px solid  #e5e5e5;
+    border-top-color: #fff;
   z-index: -1;
-  box-shadow: 0 0 10px -6px;
 
   .selectric-scroll {
     height: 100%;
@@ -177,7 +185,7 @@ $selectric-font-size:       14px !default;                                      
     top: auto;
     bottom: 100%;
   }
-
+    
   ul, li {
     list-style: none;
     padding: 0;
@@ -186,26 +194,27 @@ $selectric-font-size:       14px !default;                                      
     line-height: 20px;
     min-height: 20px;
   }
-
+    ul{
+        padding: 10px 4px;
+    }
   li {
     display: block;
-    padding: 10px;
-    color: #666;
+        padding: 5px 10px;
+
+    color: #000;
     cursor: pointer;
 
     &.selected {
-      background: #E0E0E0;
-      color: #444;
+      background: $color-yellow;
+      
     }
 
     &.highlighted {
-      background: #D0D0D0;
-      color: #444;
+       background: $color-yellow;
     }
 
     &:hover {
-      background: #D5D5D5;
-      color: #444;
+      background: #e5e5e5;
     }
   }
 
