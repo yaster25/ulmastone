@@ -597,14 +597,12 @@ function initSlider() {
      $('.item-options__more').on('click', function(event) {
          
          $(this).parents('.item-options').addClass('this');
-         
-       
-                 $('.item-options:not(".this")').removeClass('active');
-                 $('.item-options:not(".this")').find(".item-options__info").dotdotdot({
-                        height:80
-                    }); 
-                     $('.item-options:not(".this")').find('.item-options__more .link-show').show();
-                     $('.item-options:not(".this")').find('.item-options__more .link-hide').hide();
+         $('.item-options:not(".this")').removeClass('active');
+         $('.item-options:not(".this")').find(".item-options__info").dotdotdot({
+            height:80
+        }); 
+         $('.item-options:not(".this")').find('.item-options__more .link-show').show();
+         $('.item-options:not(".this")').find('.item-options__more .link-hide').hide();
           
          $(this).find('span').toggle();
          $(this).parents('.item-options').toggleClass('active');
@@ -621,6 +619,14 @@ function initSlider() {
          $(this).parents('.item-options').removeClass('this');
          return false;
      })
+     
+     $('.js-slider-gallery-single').slick({
+          infinite:true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true
+    });
+    
      
      
      
