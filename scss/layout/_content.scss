@@ -1367,6 +1367,7 @@ body.menu-open{overflow:hidden}
         padding-right: 30px;
         margin-right: 10px;
         position: relative;
+        vertical-align: middle;
         &:after { content: "";  width: 19px;height: 9px;  position: absolute; top: 50%; right: 0; margin-top: -4.5px; background: url('../img/icons.png') no-repeat -165px -33px;}
         &:last-child{
                 padding-right: 0;
@@ -3118,7 +3119,46 @@ body.menu-open{overflow:hidden}
     }
 }
 
+.title-box{
+    display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex !important;
+            flex-direction: row;
+            justify-content:space-between;
+            align-items: center;
+    &-info{
+        width: 50%;
+        padding: 30px;
+        background: #fff;
+        border-bottom: 6px solid $color-yellow;
+        margin-left: 30px;
+        display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex !important;
+            flex-direction: row;
+            justify-content:space-between;
+        margin-top: -10px;
+        &__text{
+             padding-right: 30px;
+            font-size: 15px;
+            font-weight: 100;
+            text-shadow: 0 0;
+            line-height: 1.45;
+        }
+    }
+    .btn{    margin-top: 10px;}
+}
 
+.section-top-old-tools{
+    background-image: url('../img/bg-section-top-old-tools.jpg');
+    .section-triangle-4{
+            margin-right: 0;
+    }
+}
 
 
 @media screen and (max-width: 1700px) {
@@ -3271,6 +3311,14 @@ body.menu-open{overflow:hidden}
     }
 
     
+
+    .title-box-info {
+
+        flex-direction: column;
+    }
+    .title-box-info__text{
+        padding: 0 0 15px 0;
+    }
 }
 
 @media screen and (max-width: 991px) {   
@@ -3768,6 +3816,13 @@ body.menu-open{overflow:hidden}
         padding-bottom: 30px;    
     }
     
+
+    .title-box-info{
+        padding: 20px;
+        .title.title_xs{
+            font-size: 24px;
+        }
+    }
 }
 
 @media screen and (max-width: 740px) {
@@ -4314,8 +4369,16 @@ body.menu-open{overflow:hidden}
     .gallery{
         margin-bottom: 30px;
     }
-}
 
+    .title-box{
+        flex-direction: column;
+    }
+    .title-box-info {
+        width: auto;
+        margin: 10px 0 0;
+        text-align: center;
+    }
+}
 
 @media screen and (max-width: 639px) {
     .block-category__col{
