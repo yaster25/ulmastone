@@ -6,12 +6,6 @@ $(window).on('load', function () {
 	};
  
 });
- /*if($('.js-preloader').length){
-    $('.js-preloader').preloadinator({
-        minTime: 2000,
-        scroll:true
-    });
- }*/
 
 /*
 function initSlider() {
@@ -60,6 +54,7 @@ function initSlider() {
        
     }
 */  
+
 
  $(document).ready(function(){
      
@@ -686,10 +681,21 @@ function initSlider() {
     });
      /* END Reviews SLIDER*/ 
      
+      if($('.item-news__text').length){
+         $(".item-news__text").dotdotdot({
+            height:80
+        });         
+     }
      
+     if($('.item-news-aside__name').length){
+         $(".item-news-aside__name").dotdotdot({
+            height:80
+        });         
+     }
      
+   
      
-     
+    
      
      
      $("#formCall").validate({
@@ -756,6 +762,32 @@ function initSlider() {
                      touch: false,
                     
                 });
+            }
+     });
+     
+     $("#formComment").validate({
+         errorElement:'div',
+         errorPlacement: function(error, element) {
+            element.parent().append(error);
+        },
+			rules: {				
+				name: "required",				
+                email: {
+					required: true,
+					email: true
+				},
+				comment: "required"
+			},
+			messages: {
+				name: "Необходимо заполнить «Имя».",
+				email: {
+                    required: "Необходимо заполнить «E-mail».",
+					email: "Введите корректный адрес электронной почты."
+                },
+                comment: "Необходимо заполнить «Комментарий»."				
+			},
+            submitHandler: function(){
+               
             }
      });
      
