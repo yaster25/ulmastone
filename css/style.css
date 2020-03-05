@@ -1074,6 +1074,8 @@ body.menu-open { overflow: hidden; }
 .form__col-6 { width: 50%; }
 .form__col-25 { width: 25%; }
 .form__col-37 { width: 37.5%; }
+.form__col-3 { width: 33.33%; }
+.form__col-ml-3 { margin-left: 33.33%; }
 .form-label { font-size: 13px; color: #000; padding-bottom: 18px; font-weight: 500; text-transform: uppercase; }
 .form-label span { text-transform: none; font-size: 13px; font-weight: 100; text-shadow: 0 0; }
 .form-input { display: block; width: 100%; height: 50px; padding: 0 15px; background: #fff; font-size: 15px; font-family: inherit; font-weight: 300; color: #000; border: 1px solid #fff; }
@@ -1522,6 +1524,9 @@ body.menu-open { overflow: hidden; }
 
 .title + .block-news { padding-top: 25px; }
 
+.section-top-tools-choose { background-image: url("../img/bg-section-top-choose.jpg"); }
+.section-top-tools-choose .section-triangle-4 { background: url(../img/bg-section-triangle-08.png) no-repeat top center; height: 90px; margin-right: -555px; }
+
 @media screen and (max-width: 1700px) { .top-slider .slick-prev { left: 15px; }
   .top-slider .slick-next { right: 15px; }
   .slider-nav { right: 15px; }
@@ -1703,7 +1708,9 @@ body.menu-open { overflow: hidden; }
   .block-workshops-info-3 { flex-wrap: wrap; }
   .block-workshops-info-3__left { width: 100%; }
   .block-workshops-info-3__right { width: 100%; padding-top: 30px; }
-  .item-num__num { font-size: 58px; } }
+  .item-num__num { font-size: 58px; }
+  .form__col-3 { width: 100%; }
+  .form__col-ml-3 { margin-left: 0; } }
 @media screen and (max-width: 740px) { .wrapper { padding: 0 20px; }
   .section { padding-top: 50px; padding-bottom: 50px; }
   .slider-wrapper { padding-bottom: 45px; }
@@ -1850,7 +1857,8 @@ body.menu-open { overflow: hidden; }
   .block-workshops-info-2__right { width: 100%; padding-top: 30px; }
   .block-workshops-info-2__right img { display: block; margin: 0 auto; }
   .block-workshops-info-3__left img { display: block; margin: 0 auto; }
-  .text + .block-num { padding-top: 50px; } }
+  .text + .block-num { padding-top: 50px; }
+  .filter-options .form__row + .form__row { padding-top: 30px; } }
 @media screen and (max-width: 639px) { .block-category__col { width: 100%; }
   .category-item { text-align: center; }
   .title { font-size: 32px; }
