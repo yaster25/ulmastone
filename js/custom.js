@@ -7,27 +7,36 @@ $(window).on('load', function () {
  
 });
 
-/*
+
 function initSlider() {
     
-        var handlesSlider = document.getElementById("filter-slider-prices"),
-            priceFrom = parseInt($("#price_from").val()),
-            priceTo = parseInt($("#price_to").val());
+        var handlesSlider = document.getElementById("filter-slider-time"),
+            priceFrom = parseInt($("#time_from").val()),
+            priceTo = parseInt($("#time_to").val());
 
-        var max = typeof maxPrice != "undefined"? maxPrice : 1000;
+        var max = typeof maxPrice != "undefined"? maxPrice : 60;
 
         noUiSlider.create(handlesSlider, {
             start: [ priceFrom, priceTo > 0? priceTo : max ],
-            step: 10,
+            step: 1,
             connect:true,
+            tooltips: [true, true],
             range: {
                 "min": [  0 ],
                 "max": [ max ]
-            }
+            },
+            format: {
+                from: function(value) {
+                        return parseInt(value);
+                    },
+                to: function(value) {
+                        return parseInt(value);
+                    }
+                }
         });
     
-        var valueInput = document.getElementById('price_from');
-        var valueInput2 = document.getElementById('price_to');
+        var valueInput = document.getElementById('time_from');
+        var valueInput2 = document.getElementById('time_to');
 
         handlesSlider.noUiSlider.on('update', function( values, handle ) {
             
@@ -53,7 +62,7 @@ function initSlider() {
 
        
     }
-*/  
+
 
 
  $(document).ready(function(){
@@ -232,7 +241,7 @@ function initSlider() {
      
      
      /* INFO SLIDER*/ 
-        $('.js-slider-info').each(function () {
+     $('.js-slider-info').each(function () {
           $(this).slick({
             infinite: true,
             arrows:true,
@@ -377,6 +386,59 @@ function initSlider() {
         });         
      }
      /* END ADVANTAGES SLIDER*/ 
+     
+     /* History SLIDER*/ 
+        $('.js-slider-history').each(function () {
+          $(this).slick({
+            infinite:false,
+            arrows:false,
+            dots:true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            swipeToSlide:true,
+             centerMode:true,
+            fade:false,
+              variableWidth:true,
+            responsive: [
+                /*{
+                  breakpoint: 1400,
+                  settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                  }
+                },
+                {
+                  breakpoint: 1141,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                  }
+                },
+                {
+                  breakpoint: 992,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                  }
+                },
+                {
+                  breakpoint: 741,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                  }
+                },
+                {
+                  breakpoint: 640,
+                  settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                  }
+                }*/
+              ]
+        });
+    });
+     /* END History SLIDER*/ 
      
      
      $('[data-fancybox=gallery]').fancybox({
@@ -693,8 +755,14 @@ function initSlider() {
         });         
      }
      
-   
+   if($('#filter-slider-time').length){
+         initSlider();
+     }
      
+     $('.faq-item__title').click(function(){
+		$(this).toggleClass('active');
+         $(this).next('.faq-item__content').slideToggle();
+	})
     
      
      
@@ -791,147 +859,133 @@ function initSlider() {
             }
      });
      
-     
-     
-     /*
- 
-     // NICE INPUT
-    $('.nice-input__input').blur(function() {
-        if($(this).val().length>0){
-            $(this).addClass('nice-input__input--filled');
-        }
-        else{
-            $(this).removeClass('nice-input__input--filled');
-        }        
-      })
-      .focus(function() {});
-     
-     
-    // END NICE INPUT
-     
-     
-     
-     $('[data-fancybox]').fancybox({
-         touch: false,
-        afterShow : function( instance, current ) {
-            
-            
-            if($('body').hasClass('menu-open')){
-               
-                $('body').removeClass('menu-open');
-                $('.sidebar-inner').hide();	
-                }
-            
-        }
-    });
-     
-     
-     
-     
-
-     
-     if($('#filter-slider-prices').length){
-         initSlider();
-     }
-     
-
-     
-     
-     $('ul.tabs li').click(function(){
-		var tab_id = $(this).attr('data-tab');
-
-		$('ul.tabs li').removeClass('current');
-		$(this).parents('.tabs-wrapper').find('.tab-content').removeClass('current');
-
-		$(this).addClass('current');
-		$("#"+tab_id).addClass('current');
-	})
-     
-     $('.tab-content__title').click(function(){
-		$(this).toggleClass('active');
-         $(this).next('.tab-content__content').slideToggle();
-	})
-     
-     
-     
-     $('.calc-form__btn-plus').on('click', function(event) {
-         var val=$(this).parents('.calc-form').find('.calc-form__input').val();
-        
-         var new_val = parseInt(val) + 1;
-         $(this).parents('.calc-form').find('.calc-form__input').val(new_val)
-         return false;
+     $("#formLeasing").validate({
+         errorElement:'div',
+         errorPlacement: function(error, element) {
+            element.parent().append(error);
+        },
+			rules: {
+				name: "required",
+				phone: "required",
+                email: {
+					required: true,
+					email: true
+				},
+                category: "required",
+				tool: "required",
+			},
+			messages: {
+				name: "Необходимо заполнить «ФИО».",
+				phone: "Необходимо заполнить «Телефон».",
+				category: "Необходимо выбрать «Категорию».",
+				tool: "Необходимо выбрать «Станок».",
+				email: {
+                    required: "Необходимо заполнить «E-mail».",
+					email: "Введите корректный адрес электронной почты."
+                }				
+			},
+            submitHandler: function(){
+                $.fancybox.close();
+                $.fancybox.open({
+                    src  : '#popup-thank',
+                    type : 'inline',
+                     touch: false,                    
+                });
+            }
      });
      
-     $('.calc-form__btn-minus').on('click', function(event) {
-         var val=$(this).parents('.calc-form').find('.calc-form__input').val();
-        
-         var new_val = parseInt(val) - 1;
-         
-         if(new_val<1) new_val=1;
-         $(this).parents('.calc-form').find('.calc-form__input').val(new_val)
-         return false;
+     $("#formFaq").validate({
+         errorElement:'div',
+         errorPlacement: function(error, element) {
+            element.parent().append(error);
+        },
+			rules: {
+				name: "required",
+				phone: "required",
+                email: {
+					required: true,
+					email: true
+				},
+                question: "required"
+			},
+			messages: {
+				name: "Необходимо заполнить «Ваше имя».",
+				phone: "Необходимо заполнить «Телефон».",
+				question: "Необходимо заполнить «Вопрос».",
+				email: {
+                    required: "Необходимо заполнить «E-mail».",
+					email: "Введите корректный адрес электронной почты."
+                }				
+			},
+            submitHandler: function(){
+                $.fancybox.close();
+                $.fancybox.open({
+                    src  : '#popup-thank',
+                    type : 'inline',
+                     touch: false,                    
+                });
+            }
      });
      
+     $("#formCall2").validate({
+         errorElement:'div',
+         errorPlacement: function(error, element) {
+            element.parent().append(error);
+        },
+			rules: {
+				name: "required",
+				phone: "required",
+                email: {
+					required: true,
+					email: true
+				}				
+			},
+			messages: {
+				name: "Необходимо заполнить «Имя».",
+				phone: "Необходимо заполнить «Телефон».",
+				email: {
+                    required: "Необходимо заполнить «E-mail».",
+					email: "Введите корректный адрес электронной почты."
+                }				
+			},
+            submitHandler: function(){
+                $.fancybox.close();
+                $.fancybox.open({
+                    src  : '#popup-thank',
+                    type : 'inline',
+                     touch: false,                    
+                });
+            }
+     });
      
-     $('.faq-item__title').click(function(){
-		$(this).toggleClass('active');
-         $(this).next('.faq-item__content').slideToggle();
-	})
-     
-    if($('#map').length){
+     if($('#map').length){
          initMap();
      }
-     
-     */
-     
-		
+
  });
 
 
-/*
-	By Osvaldas Valutis, www.osvaldas.info
-	Available for use under the MIT License
-*/
-/*
-'use strict';
-
-;( function ( document, window, index )
-{
-	var inputs = document.querySelectorAll( '.inputfile' );
-	Array.prototype.forEach.call( inputs, function( input )
-	{
-		var label	 = input.nextElementSibling,
-			labelVal = label.innerHTML;
-
-		input.addEventListener( 'change', function( e )
-		{
-			var fileName = '';
-			if( this.files && this.files.length > 1 )
-				fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-			else
-				fileName = e.target.value.split( '\\' ).pop();
-
-			if( fileName )
-				label.querySelector( 'span' ).innerHTML = fileName;
-			else
-				label.innerHTML = labelVal;
-		});
-
-		// Firefox bug fix
-		input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
-		input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
-	});
-}( document, window, 0 ));
-
-
-
 function initMap() {
-  var uluru = {lat: 55.372967, lng: 37.5599753};
-  var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 16, center: uluru, disableDefaultUI: true});
-  var marker = new google.maps.Marker({position: uluru, map: map, title: 'Бережковский проезд, д.8'});
+    var uluru = {lat: 55.8115267, lng: 37.6525307};
+    var map = new google.maps.Map(
+        document.getElementById('map'), {
+            zoom: 17, 
+            styles: [{
+            stylers: [{
+              saturation: -100
+            },
+            {
+                "lightness": -50
+            }]
+        }],
+        center: uluru, 
+        disableDefaultUI: true,    
+        }
+    );
+    var marker = new google.maps.Marker({
+          position: uluru, 
+          map: map, 
+          icon: 'img/icon-map.png',
+          title: 'ул.Маломосковская, д.22, стр.1, эт. Цоколь, пом. I, ком. 65'
+    });
 }
-*/
-
-
-
