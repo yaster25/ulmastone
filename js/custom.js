@@ -41,12 +41,9 @@ function initSlider() {
         handlesSlider.noUiSlider.on('update', function( values, handle ) {
             
             if ( handle ) {
-                //valueInput2.value = Math.round(values[handle]);
-                 valueInput2.value = parseInt(values[handle]);
-         
+                 valueInput2.value = parseInt(values[handle]);         
             } else {
-                valueInput.value = parseInt(values[handle]);
-                
+                valueInput.value = parseInt(values[handle]);                
             }
         });
 
@@ -57,11 +54,7 @@ function initSlider() {
         valueInput2.addEventListener('change', function(){
             handlesSlider.noUiSlider.set([null, this.value]);
         });
-    
-    
-
-       
-    }
+}
 
 
 
@@ -108,7 +101,6 @@ function initSlider() {
          
 	 });
      
-     //console.log($(window).innerWidth());
      $('.f-menu-parent').click(function() {	
          if($(window).innerWidth()<992){
              $(this).next('.f-submenu').slideToggle();
@@ -147,49 +139,48 @@ function initSlider() {
 
         });
   
-      //ticking machine
-    var percentTime;
-    var tick;
-    var time = 1;
-    var progressBarIndex = 0;
+        //ticking machine
+        var percentTime;
+        var tick;
+        var time = 1;
+        var progressBarIndex = 0;
 
-    
-    function startProgressbar() {
-        resetProgressbar();
-        percentTime = 0;
-        tick = setInterval(interval, 10);
-       
-    }
 
-    function interval() {
-       percentTime += 1 / (time + 3) /100;
+        function startProgressbar() {
+            resetProgressbar();
+            percentTime = 0;
+            tick = setInterval(interval, 10);
+
+        }
+
+        function interval() {
+           percentTime += 1 / (time + 3) /100;
+                $('.inProgress').css({
+                    opacity:1
+                }).css({
+                    transform:"scaleX("+percentTime+")"
+                });
+                if (percentTime >= 1) {
+                    $('.top-slider').slick('slickNext');                
+                    startProgressbar();
+                }         
+        }
+
+        function resetProgressbar() {
             $('.inProgress').css({
-                opacity:1
+               transform:"scaleX(0)"
             }).css({
-                transform:"scaleX("+percentTime+")"
-            });
-            if (percentTime >= 1) {
-                $('.top-slider').slick('slickNext');                
-                startProgressbar();
-            }         
-    }
-
-    function resetProgressbar() {
-        $('.inProgress').css({
-           transform:"scaleX(0)"
-        }).css({
-                opacity:0
-            });
-        clearInterval(tick);
-    }
-    startProgressbar();
+                    opacity:0
+                });
+            clearInterval(tick);
+        }
+        startProgressbar();
      
-     
-     // On before slide change
         $('.top-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide){
           startProgressbar();
         });
-    // End ticking machine
+     
+        // End ticking machine
      
      /*END TOP SLIDER*/
      
@@ -267,9 +258,8 @@ function initSlider() {
      
       if($('.item-country__tooltip').length){
         $('.item-country__tooltip').tooltipster({
-            contentCloning: true, 
-            //trigger:'click',
-             side:'bottom',
+            contentCloning: true,
+            side:'bottom',
             trigger: 'custom',
             triggerOpen: {
                 mouseenter: true,
@@ -396,45 +386,23 @@ function initSlider() {
             slidesToShow: 1,
             slidesToScroll: 1,
             swipeToSlide:true,
-             centerMode:true,
+            centerMode:true,
             fade:false,
-              variableWidth:true,
+            variableWidth:true,  
+            focusOnSelect: true,
             responsive: [
-                /*{
-                  breakpoint: 1400,
-                  settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
-                  }
-                },
                 {
-                  breakpoint: 1141,
+                  breakpoint: 1200,
                   settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
+                    centerMode:false,
                   }
-                },
-                {
-                  breakpoint: 992,
-                  settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                  }
-                },
-                {
+                },{
                   breakpoint: 741,
                   settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
+                    centerMode:false,
+                    adaptiveHeight:true
                   }
-                },
-                {
-                  breakpoint: 640,
-                  settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                  }
-                }*/
+                }
               ]
         });
     });
@@ -489,8 +457,7 @@ function initSlider() {
         });         
      }
      
-     if($('.aside-sticky').length){     
-         console.log('1');
+     if($('.aside-sticky').length){    
          var sticky = new Sticky('.aside-sticky');
      }
      
@@ -610,7 +577,6 @@ function initSlider() {
               ]
         });
     });
-
      
      $(window).on('resize orientationchange', function() {
             if($('.item-product-2__info').length){

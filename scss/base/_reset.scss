@@ -7,7 +7,7 @@ body {
 	padding: 0px;
 	font-family: $base-font-family;
 	background-color: $base-bg;
-    color: $color-dark;
+    color: $color-black;
 	height: 100%;
 	line-height: 1;
 	position: relative;
@@ -82,7 +82,6 @@ form {
 }
 
 a {
-	//color: $link-color;
 	@include transition($default-transition);
 	text-decoration: none;
 	outline: none;
