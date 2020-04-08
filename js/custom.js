@@ -261,6 +261,8 @@ function initSlider() {
             contentCloning: true,
             side:'bottom',
             trigger: 'custom',
+            contentAsHTML: true,
+		    interactive: true,
             triggerOpen: {
                 mouseenter: true,
                 click: true,
