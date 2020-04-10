@@ -732,6 +732,18 @@ function initSlider() {
          $(this).next('.faq-item__content').slideToggle();
 	})
     
+     $('.item-options-choose').click(function(){
+        if ($(event.target).closest("a").length) return;
+		$(this).toggleClass('checked');
+        var checkBoxes= $(this).find('input');
+        if(checkBoxes.prop("checked")==true)
+             checkBoxes.prop("checked", false); 
+        else
+             checkBoxes.prop("checked", true)
+         
+         $('#count-checked').text($('.block-options input[type="checkbox"]:checked').length);
+         
+	})
      
      
      $("#formCall").validate({
@@ -830,7 +842,8 @@ function initSlider() {
      $("#formLeasing").validate({
          errorElement:'div',
          errorPlacement: function(error, element) {
-            element.parent().append(error);
+            //element.parent().append(error);
+             element.closest('.form__col').append(error);
         },
 			rules: {
 				name: "required",
@@ -859,8 +872,50 @@ function initSlider() {
                     type : 'inline',
                      touch: false,                    
                 });
+            },
+            highlight: function(element, errorClass, validClass) {
+              var $element = $(element) 
+                , $group = $element.closest('.form__col');
+
+              $group.removeClass('form__col--success').addClass('form__col--error');
+
+              switch (element.type) {
+                case 'select-one':
+                  if ($group.find('.selectric-wrapper').length !== 0) {
+                    // close the select
+                    $(element).selectric('close');
+                  }
+                  break;
+
+                // add more behavior...
+              }
+            },
+            unhighlight: function(element, errorClass, validClass) {
+              var $element = $(element) 
+                , $group = $element.closest('.form__col');
+
+              $group.removeClass('form__col--error').addClass('form__col--success');
+
+              switch (element.type) {
+                case 'selsect-one':
+                  if ($group.find('.selectric-wrapper').length !== 0) {
+                    // close the select
+                    $('select').selectric('close');
+                  }
+                  break;
+
+                // add more behavior...
+              }
             }
      });
+     
+     $('#formLeasing').on('selectric-change', function(event, element, selectric) {
+        console.log(event);
+        console.log(element);
+        console.log(selectric);
+
+        $(this).valid();
+      });
      
      $("#formFaq").validate({
          errorElement:'div',

@@ -1317,6 +1317,9 @@ body.menu-open{overflow:hidden}
             font-weight: 100;
             text-shadow: 0 0;
         }
+        i{
+            font-style:normal;
+        }
     }
     &-input{
         display: block;
@@ -2648,6 +2651,26 @@ body.menu-open{overflow:hidden}
         }
     }
 }
+.item-options-choose{
+    cursor: pointer;
+    .item-options{   
+        &__inner{
+            transition: border 0.2s;
+            &:hover{
+                border-color: #ffcc00;
+            }
+        }
+    }
+    &.checked{
+        background-color: #f1f1f1;
+        .item-options{   
+        &__inner{
+            background-color: #f1f1f1;
+             border-color: #ffcc00;
+            }
+        }
+    }
+}
 
 .link{
     font-size: 17px;
@@ -3941,6 +3964,20 @@ body.menu-open{overflow:hidden}
     }
 }
 
+.form__col--error{
+    .selectric{
+        border-color: #df4e49;
+    }
+    .form-input{
+        border-color: #df4e49;
+    }
+}
+.form__col--success{
+    .selectric{
+        border-color: #fff;
+    }
+    div.error{ display: none !important;}
+}
 
 @media screen and (max-width: 1700px) {
     .top-slider .slick-prev {
