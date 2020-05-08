@@ -2131,14 +2131,15 @@ body.menu-open{overflow:hidden}
     
 }
 .block-product-icons-slider{
-    height: 90px; overflow: hidden;
+    overflow: hidden;
+    padding-bottom: 5px;
 }
 .slider-product-icons{
     padding-right: 50px;
-    height: 90px;
+    //height: 90px;
     overflow: hidden;
-    &__slide{}
-    
+    padding-bottom: 5px;
+    &__slide{}    
     .slick-prev{
             width: 46px;
             height: 19px;
@@ -2164,14 +2165,14 @@ body.menu-open{overflow:hidden}
                 background: url('../img/icons.png') no-repeat -245px -15px ;
             }
         }
-        .slick-next{
+    .slick-next{
             width: 46px;
             height: 19px;
             display: block;
             z-index: 99;
             position: absolute;
             transform: none;
-            top: auto;
+            top: 50px;
             bottom: 15px;
             left: auto;
             margin-left: 0;
@@ -2201,12 +2202,25 @@ body.menu-open{overflow:hidden}
             line-height: 90px;
             text-align: center;
             position: relative;
+    margin: 0 auto;
             img{
                 vertical-align: middle;
                 display: inline-block;
                 width: auto;
                 height: auto;
             }
+    &-text{
+        
+        color: $color-white;
+        text-align: center;
+        padding-top: 20px;
+    }
+}
+
+.is-sticky-fixed{
+    .product-icon-text{
+        color: $color-black;
+    }
 }
 
 .block-product-info{
@@ -5716,16 +5730,13 @@ body.menu-open{overflow:hidden}
         }
     }
     .block-product-icons-slider{
-        height: 60px;
+       
     }
     .slider-product-icons .slick-prev{
         top: 0;
     }
     .slider-product-icons .slick-next{
-        bottom: 0;
-    }
-    .slider-product-icons{
-        height: 60px;
+        top:35px;
     }
     .title.title_xs {
         font-size: 18px;
@@ -5740,7 +5751,9 @@ body.menu-open{overflow:hidden}
     .product-param span:nth-child(1){
        display: inline;
     }
-    
+    .product-icon-text{
+        font-size: 14px;
+    }
 
     
 
